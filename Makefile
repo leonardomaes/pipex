@@ -8,7 +8,7 @@ LIBFT = includes/libft/libft.a
 PRINTF = includes/ft_printf/libftprintf.a
 
 #
-SRC =	main.c sources/utils.c 
+SRC =	main.c sources/utils.c sources/pipex.c
 #
 
 # Commands

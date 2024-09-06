@@ -29,8 +29,16 @@ typedef struct pipex
 	int	outfile;
 	int	pipefd[2];
 	char	**comm;
+	char	**comm_paths;
+	char	*path;
 } t_pipex;
 
-
-
 void	error(const char *strerr);
+void	open_files(t_pipex **pipex_tab, char *argv[], int argc);
+char	**get_command(char	*argv);
+
+void	child_process(t_pipex **pipex_tab, char *argv[]);
+void	parent_process(t_pipex **pipex_tab, char *argv[]);
+
+char	*find_path(char **envp);
+char	*get_cmd(char **paths, char *cmd);
