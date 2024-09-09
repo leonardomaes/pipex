@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "libft.h"
 
 size_t	ft_strlen_gnl(const char *str)
@@ -35,11 +34,11 @@ char	*ft_strchr_gnl(const char *str, int c)
 	while (str[i])
 	{
 		if (str[i] == (char)c)
-			return ((char *) str + i);
+			return ((char *)str + i);
 		i++;
 	}
 	if ((char)c == '\0')
-		return ((char *) str + i);
+		return ((char *)str + i);
 	return (NULL);
 }
 
@@ -91,5 +90,4 @@ char	*ft_strjoin_gnl(char *buffer, char *content)
 	return (result);
 }
 
-//Bonus
-
+// Bonus

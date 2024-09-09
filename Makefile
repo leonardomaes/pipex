@@ -8,13 +8,14 @@ LIBFT = includes/libft/libft.a
 PRINTF = includes/ft_printf/libftprintf.a
 
 #
-SRC =	main.c sources/utils.c sources/pipex.c
+SRC =	sources/main.c sources/utils.c sources/pipex.c
+SRC_BONUS = bonus/main_bonus.c bonus/pipex_bonus.c bonus/utils_bonus.c
 #
 
 # Commands
 RM = rm -rf
 OBJ = $(SRC:.c=.o)
-
+BONUS_OBJ = $(SRC_BONUS:.c=.o)
 all: $(NAME)
 
 %.o : %.c
@@ -30,7 +31,7 @@ $(NAME) : $(OBJ) $(PRINTF) $(LIBFT)
 	@$(CC) $(CFLAGS) -o $(NAME) $(OBJ) $(LIBFT) $(PRINTF)
 
 clean:
-			$(RM) $(OBJ)
+			$(RM) $(OBJ) $(BONUS_OBJ)
 			@make --silent -C includes/ft_printf clean
 			@make --silent -C includes/libft clean
 fclean: clean
@@ -39,3 +40,6 @@ fclean: clean
 			@make --silent -C includes/libft  fclean
 
 re: fclean all
+
+bonus : clean $(BONUS_OBJ) $(LIBFT)
+		@$(CC) $(CFLAGS) -o $(NAME) $(BONUS_OBJ) $(LIBFT)

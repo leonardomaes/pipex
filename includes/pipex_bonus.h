@@ -10,35 +10,33 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/libft/libft.h"
-#include "includes/ft_printf/ft_printf.h"
-
-#include <unistd.h>
-#include <stdlib.h>
+#include "ft_printf/ft_printf.h"
+#include "libft/libft.h"
+#include <errno.h>
 #include <fcntl.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include <sys/stat.h>
 #include <sys/types.h>
 #include <sys/wait.h>
-#include <errno.h>
+#include <unistd.h>
 
 typedef struct pipex
 {
-	int	infile;
-	int	outfile;
-	int	pipefd[2];
+	int		infile;
+	int		outfile;
+	int		pipefd[2];
 	char	**comm;
 	char	**comm_paths;
 	char	*path;
-} t_pipex;
-
-void	error(const char *strerr);
-void	open_files(t_pipex **pipex_tab, char *argv[], int argc);
-char	**get_command(char	*argv);
-
-void	child_process(t_pipex **pipex_tab, char *argv[]);
-void	parent_process(t_pipex **pipex_tab, char *argv[]);
-
-char	*find_path(char **envp);
-char	*get_cmd(char **paths, char *cmd);
+}			t_pipex;
+/*  UTILS  */
+void		error_bonus(const char *strerr);
+int			open_files_bonus(t_pipex **pipex_tab, char *argv[], int argc);
+char		**get_command_bonus(char *argv);
+/*  MAIN  */
+int			ft_pipex_bonus(char **argv, t_pipex **pipex_tab, int argc);
+/*  PIPEX  */
+void		child_process_bonus(t_pipex **pipex_tab, char *argv);
+void		parent_process_bonus(t_pipex **pipex_tab, char *argv[]);

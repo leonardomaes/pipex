@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   utils_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lmaes <lmaes@student.42porto.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,15 +10,15 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/pipex.h"
+#include "../includes/pipex_bonus.h"
 
-void	error(const char *strerr)
+void	error_bonus(const char *strerr)
 {
 	perror(strerr);
 	exit(1);
 }
 
-int	open_files(t_pipex **pipex_tab, char *argv[], int argc)
+int	open_files_bonus(t_pipex **pipex_tab, char *argv[], int argc)
 {
 	(*pipex_tab)->infile = open(argv[1], O_RDONLY, 0777);
 	if ((*pipex_tab)->infile < 1)
@@ -30,7 +30,7 @@ int	open_files(t_pipex **pipex_tab, char *argv[], int argc)
 	return (0);
 }
 
-char	**get_command(char *argv)
+char	**get_command_bonus(char *argv)
 {
 	char	**comm;
 

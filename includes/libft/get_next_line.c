@@ -40,7 +40,7 @@ char	*get_line(int fd, char *backup)
 char	*dup_line(char *backup)
 {
 	char	*line;
-	size_t		i;
+	size_t	i;
 
 	i = 0;
 	if (!backup[i])
