@@ -22,21 +22,24 @@
 #include <sys/wait.h>
 #include <unistd.h>
 
+extern char	**environ;
+
 typedef struct pipex
 {
 	int		infile;
 	int		outfile;
 	int		pipefd[2];
-	char	**comm;
-	char	**comm_paths;
-	char	*path;
+	char	*comm;
+	char	**args;
+	char	**cmd_paths;
 }			t_pipex;
 
 /*  UTILS  */
 void		error(const char *strerr);
 int			open_files(t_pipex **pipex_tab, char *argv[], int argc);
-char		**get_command(char *argv);
-void		free_tab(t_pipex **pipex);
+char		*get_command(char *argv, char **path);
+char		*get_path(char **envp);
+void		free_split(char **str);
 /*  MAIN  */
 int			ft_pipex(char **argv, t_pipex **pipex_tab);
 /*  PIPEX  */

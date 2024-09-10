@@ -17,8 +17,13 @@ void	parent_process(t_pipex **pipex_tab, char *argv[])
 	dup2((*pipex_tab)->pipefd[0], STDIN_FILENO);
 	dup2((*pipex_tab)->outfile, STDOUT_FILENO);
 	close((*pipex_tab)->pipefd[1]);
-	(*pipex_tab)->comm = get_command(argv[3]);
-	execve((*pipex_tab)->comm[0], (*pipex_tab)->comm, NULL);
+	(*pipex_tab)->args = ft_split(argv[3], ' ');
+	(*pipex_tab)->comm = get_command((*pipex_tab)->args[0], (*pipex_tab)->cmd_paths);
+	if (!(*pipex_tab)->comm)
+	{
+		error("Command not found\n");
+	}
+	execve((*pipex_tab)->comm, (*pipex_tab)->args, environ);
 	error("Parent process failed");
 }
 
@@ -27,7 +32,12 @@ void	child_process(t_pipex **pipex_tab, char *argv[])
 	dup2((*pipex_tab)->infile, STDIN_FILENO);
 	dup2((*pipex_tab)->pipefd[1], STDOUT_FILENO);
 	close((*pipex_tab)->pipefd[0]);
-	(*pipex_tab)->comm = get_command(argv[2]);
-	execve((*pipex_tab)->comm[0], (*pipex_tab)->comm, NULL);
+	(*pipex_tab)->args = ft_split(argv[2], ' ');
+	(*pipex_tab)->comm = get_command((*pipex_tab)->args[0], (*pipex_tab)->cmd_paths);
+	if (!(*pipex_tab)->comm)
+	{
+		error("Command not found\n");
+	}
+	execve((*pipex_tab)->comm, (*pipex_tab)->args, environ);
 	error("Child process failed");
 }
