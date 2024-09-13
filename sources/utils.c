@@ -12,8 +12,9 @@
 
 #include "../includes/pipex.h"
 
-void	error(const char *strerr)
+void	error(const char *strerr, t_pipex *pipex)
 {
+	free(pipex);
 	perror(strerr);
 	exit(1);
 }

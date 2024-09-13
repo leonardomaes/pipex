@@ -35,7 +35,7 @@ typedef struct pipex
 }			t_pipex;
 
 /*  UTILS  */
-void		error(const char *strerr);
+void		error(const char *strerr, t_pipex *pipex);
 int			open_files(t_pipex **pipex_tab, char *argv[], int argc);
 char		*get_command(char *argv, char **path);
 char		*get_path(char **envp);

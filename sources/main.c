@@ -51,21 +51,12 @@ int	main(int argc, char *argv[])
 		exit(1);
 	}
 	if (open_files(&pipex, argv, argc) == -1)
-	{
-		free(pipex);
-		error("Error with opening file");
-	}
+		error("Error with opening file", pipex);
 	if (pipe(pipex->pipefd) == -1)
-	{
-		free(pipex);
-		error("Pipe creation failed");
-	}
+		error("Pipe creation failed", pipex);
 	pipex->cmd_paths = ft_split(get_path(environ), ':');
 	if (ft_pipex(argv, &pipex) < 0)
-	{
-
-		error("Error with the pipe process");
-	}
+		error("Error with the pipe process", pipex);
 	close(pipex->infile);
 	close(pipex->outfile);
 	free_split(pipex->args);
