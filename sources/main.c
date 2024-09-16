@@ -34,7 +34,7 @@ int	ft_pipex(char **argv, t_pipex **pipex_tab)
 	return (0);
 }
 
-int	main(int argc, char *argv[])
+int	main(int argc, char *argv[])	// Resolver casos de argv == ""
 {
 	t_pipex	*pipex;
 
@@ -59,7 +59,6 @@ int	main(int argc, char *argv[])
 		error("Error with the pipe process", pipex);
 	close(pipex->infile);
 	close(pipex->outfile);
-	free_split(pipex->args);
 	free_split(pipex->cmd_paths);
 	free(pipex);
 	return (0);
