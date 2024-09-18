@@ -34,7 +34,7 @@ int	ft_pipex(char **argv, t_pipex **pipex_tab)
 	return (0);
 }
 
-int	main(int argc, char *argv[])	// Resolver casos de argv == ""
+int	main(int argc, char *argv[])
 {
 	t_pipex	*pipex;
 

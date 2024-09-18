@@ -14,6 +14,11 @@
 
 void	error(const char *strerr, t_pipex *pipex)
 {
+	if (pipex->cmd_paths)
+	{
+		free_split(pipex->cmd_paths);
+		free_split(pipex->args);
+	}
 	free(pipex);
 	perror(strerr);
 	exit(1);
@@ -43,6 +48,8 @@ int	open_files(t_pipex **pipex_tab, char *argv[], int argc)
 
 char	*get_path(char **envp)
 {
+	if (!*envp)
+    	return (NULL);
 	while (ft_strncmp("PATH", *envp, 4))
 		envp++;
 	return (*envp + 5);
@@ -56,8 +63,18 @@ char	*get_command(char *cmd, char **path)
 	while (*path)
 	{
 		temp = ft_strjoin(*path, "/");
+		if (!temp)
+		{
+			perror("Error allocating memory for command");
+			return (NULL);
+		}
 		comm = ft_strjoin(temp, cmd);
 		free(temp);
+		if (!comm)
+		{
+			perror("Error allocating memory for command");
+			return (NULL);
+		}
 		if (access(comm, 0) == 0)
 			return (comm);
 		free(comm);
